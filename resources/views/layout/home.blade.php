@@ -5,7 +5,7 @@
     <div class="dam-sen-park">
         <img class="logo" src="/images/logodamsen.png" alt="">
         <div class="text-dam-sen-park">
-            <img class="text-damsen" src="/images/damsen.png" alt=""><br>
+            <img class="text-damsen" src="/images/damsen.svg" alt=""><br>
             <img class="text-park" src="/images/park.png" alt="">
         </div>
     </div>
@@ -85,7 +85,7 @@
     </div>
 </main>
 
-<img class="bg-lisa" src="/images/Lisa_Arnold_Lay_Do_F2_3.png" alt="">
+<img class="bg-lisa" src="/images/Lisa.png" alt="">
 <img class="bg-render" src="/images/render-fix-hair-1.png" alt="">
 <img class="bg-18451" src="/images/18451.png" alt="">
 <img class="bg-18451_1" src="/images/18451-1.png" alt="">
