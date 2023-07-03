@@ -45,7 +45,7 @@
                 
             </div>
             <div class="area-content-right">
-                <form action="" method="POST">
+                <form action="/order" method="POST">
                     @csrf
                     <div class="box">
                         <input class="input-box box-1 select-mouse form-control " name="package" type="text" id="selectedOption"
