@@ -48,34 +48,35 @@
                 <form action="/order" method="POST">
                     @csrf
                     <div class="box">
-                        <input class="input-box box-1 select-mouse form-control " name="package" type="text" id="selectedOption"
-                            placeholder="Chọn gói dịch vụ" readonly value="">
+                        <select class="input-box box-1 select-mouse form-control" id="" name="order">
+                            @foreach($orders as $item)
+                            <option class="item-service" value="{{ $item->name }}" data-price="{{ $item->price }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
                         <div class="btn-down"></div>
-                        <div class="dropdown-content box-1">
-                            <a class="item-service" href="#" data-price=""></a>
-                        </div>
+                    </div>
+                    <div class="box">
+                        <input class="input-box box-4" type="hidden" name="price" id="totalPriceInput"
+                            placeholder="Giá vé">
                     </div>
 
                     <div class="box">
                         <input class="input-box box-2 form-control " type="number" name="quantity" id="quantityInput"
-                            placeholder="Số lượng vé" min="0" value="">
-                        <input class="input-box box-3 form-control " type="text" name="use_date" id="selectedDate"
-                            placeholder="Ngày sử dụng" value="">
+                            placeholder="Số lượng vé" min="0" value="{{ old('quantity') }}">
+                        <input class="input-box box-3 form-control " type="text" name="date" id="selectedDate"
+                            placeholder="Ngày sử dụng" value="{{ old('date') }}">
                         <div class="btn-calendar"></div>
                     </div>
                     <div class="box">
-                        <input class="input-box box-4 form-control " type="text" name="full_name" placeholder="Họ và tên" value="">
+                        <input class="input-box box-4 form-control " type="text" name="fullname" placeholder="Họ và tên" value="{{ old('fullname') }}">
                     </div>
                     <div class="box">
-                        <input class="input-box box-4 form-control " type="text" name="phone" placeholder="Số điện thoại" value="">
+                        <input class="input-box box-4 form-control " type="text" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                     </div>
                     <div class="box">
-                        <input class="input-box box-4 form-control " type="email" name="email" placeholder="Địa chỉ email" value="">
+                        <input class="input-box box-4 form-control " type="email" name="email" placeholder="Địa chỉ email" value="{{ old('email') }}">
                     </div>
-                    <div class="box">
-                        <input class="input-box box-4" type="hidden" name="total_price" id="totalPriceInput"
-                            placeholder="Giá vé">
-                    </div>
+                    
                     <div class="box-btn">
                         <button class="btn-datve">ĐẶT VÉ</button>
                     </div>
@@ -94,4 +95,45 @@
 <img class="bg-18451_4" src="/images/18451-4.png" alt="">
 <img class="bg-18451_5" src="/images/18451-5.png" alt="">
 
+<script>
+  $(document).ready(function() {
+    $("#selectedDate").datepicker();
+  });
+</script>
+
+<script>
+// Lấy các phần tử trong DOM
+const orderSelect = document.querySelector('.select-mouse');
+const quantityInput = document.getElementById('quantityInput');
+const priceInput = document.getElementById('totalPriceInput');
+
+// Xử lý sự kiện khi người dùng thay đổi lựa chọn mục trong dropdown list
+orderSelect.addEventListener('change', function() {
+  const price = parseFloat(this.options[this.selectedIndex].dataset.price);
+  const quantity = parseInt(quantityInput.value);
+
+  if (!isNaN(price) && !isNaN(quantity) && quantity > 0) {
+    const totalPrice = price * quantity;
+    priceInput.value = totalPrice.toFixed(0);
+  } else {
+    priceInput.value = '';
+  }
+});
+
+// Xử lý sự kiện khi người dùng nhập số lượng vé
+quantityInput.addEventListener('input', function() {
+  const price = parseFloat(orderSelect.options[orderSelect.selectedIndex].dataset.price);
+  const quantity = parseInt(this.value);
+
+  if (!isNaN(price) && !isNaN(quantity) && quantity > 0) {
+    const totalPrice = price * quantity;
+    priceInput.value = totalPrice.toFixed(0);
+  } else {
+    priceInput.value = '';
+  }
+});
+
+</script>
+
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 @endsection

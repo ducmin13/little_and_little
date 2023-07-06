@@ -17,19 +17,19 @@
                         <div class="box-abate">
                             <p>Số tiền thanh toán</p>
                             <input class="input-box box-abate-1" type="text" name="" id=""
-                                value="" placeholder="" disabled>
+                                value="{{ $ticket['price'] }}" placeholder="" disabled>
                         </div>
                         <div class="box-abate">
                             <p>Số lượng vé</p>
                             <div>
                                 <input class="input-box box-abate-2" type="number" name=""
-                                    value="" id="" placeholder="" disabled>
+                                    value="{{ $ticket['quantity'] }}" id="" placeholder="" disabled>
                                 <p>vé</p>
                             </div>
                         </div>
                         <div class="box-abate">
                             <p>Ngày sử dụng</p>
-                            <input class="input-box box-abate-1" type="text" name="" value=""
+                            <input class="input-box box-abate-1" type="text" name="" value="{{ $ticket['date'] }}"
                                 id="" placeholder="" disabled>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Thông tin liên hệ</p>
-                            <input class="input-box box-abate-3" type="text" name="" value=""
+                            <input class="input-box box-abate-3" type="text" name="" value="{{ $ticket['fullname'] }}"
                                 id="" placeholder="Họ và tên" disabled>
                         </div>
 
@@ -45,14 +45,14 @@
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Điện thoại</p>
-                            <input class="input-box box-abate-1" type="text" name="" value=""
+                            <input class="input-box box-abate-1" type="text" name="" value="{{ $ticket['phone'] }}"
                                 id="" placeholder="Số điện thoại" disabled>
                         </div>
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Email</p>
-                            <input class="input-box box-abate-3" type="email" name="" value=""
+                            <input class="input-box box-abate-3" type="email" name="" value="{{ $ticket['email'] }}"
                                 id="" placeholder="Email" disabled>
                         </div>
                     </div>
@@ -65,18 +65,18 @@
                 <img src="/images/tttt.svg" alt="">
             </div>
             <div class="area-content-right-abate">
-                <form action="/order-success" method="POST">
+                <form action="/payment" method="POST">
                     @csrf
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Số thẻ</p>
-                            <input class="input-box box-abate-3 form-control" type="number" name="card_number" id="" placeholder="">
+                            <input class="input-box box-abate-3 form-control" type="number" name="cardnumber" id="" placeholder="">
                         </div>
                     </div>
                     <div class="area-box-abate">
                         <div class="box-abate">
                             <p>Họ tên chủ thẻ</p>
-                            <input class="input-box box-abate-3 form-control " type="text" name="card_holder" id="" placeholder=""
+                            <input class="input-box box-abate-3 form-control " type="text" name="cardname" id="" placeholder=""
                                 onkeyup="this.value = this.value.toUpperCase();">
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <p>Ngày hết hạn</p>
                         <div class="box--calendar">
                             <input class="input-box box-3 form-control " type="text" id="selectedDate" name="expiration_date"
-                                placeholder="Ngày sử dụng">
+                                placeholder="Ngày hết hạn">
                             <div class="btn-calendar"></div>
                         </div>
                     </div>

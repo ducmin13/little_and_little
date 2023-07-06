@@ -8,46 +8,19 @@
         </div>
         <div class="content-event">
             <div class="area-event">
+                @foreach($events as $item)
                 <div class="item-event">
-                    <img src="/images/img-event.png" alt="">
+                    <img src="/images/{{ $item->img }}" alt="">
                     <div class="body-item-event">
-                        <h1>Sự kiện 1</h1>
-                        <h2>Vị trí</h2>
-                        <h3><img src="/images/calendar.svg" alt="">29/06/2023 - 30/06/2023</h3>
-                        <h4>25.000 VNĐ</h4>
-                        <a class="btn-infomation" href="/event-detail">Xem chi tiết</a>
+                        <h1>{{ $item->name }}</h1>
+                        <h2>{{ $item->location }}</h2>
+                        <h3><img src="/images/calendar.svg" alt="">{{ date('d/m/Y', strtotime($item->start_date)) }} -
+                            {{ date('d/m/Y', strtotime($item->end_date)) }}</h3>
+                        <h4>{{ $item->price }} VNĐ</h4>
+                        <a class="btn-infomation" href="/event-detail/{{ $item->id }}">Xem chi tiết</a>
                     </div>
                 </div>
-                <div class="item-event">
-                    <img src="/images/img-event.png" alt="">
-                    <div class="body-item-event">
-                        <h1>Sự kiện 1</h1>
-                        <h2>Vị trí</h2>
-                        <h3><img src="/images/calendar.svg" alt="">29/06/2023 - 30/06/2023</h3>
-                        <h4>25.000 VNĐ</h4>
-                        <a class="btn-infomation" href="/event-detail">Xem chi tiết</a>
-                    </div>
-                </div>
-                <div class="item-event">
-                    <img src="/images/img-event.png" alt="">
-                    <div class="body-item-event">
-                        <h1>Sự kiện 1</h1>
-                        <h2>Vị trí</h2>
-                        <h3><img src="/images/calendar.svg" alt="">29/06/2023 - 30/06/2023</h3>
-                        <h4>25.000 VNĐ</h4>
-                        <a class="btn-infomation" href="/event-detail">Xem chi tiết</a>
-                    </div>
-                </div>
-                <div class="item-event">
-                    <img src="/images/img-event.png" alt="">
-                    <div class="body-item-event">
-                        <h1>Sự kiện 1</h1>
-                        <h2>Vị trí</h2>
-                        <h3><img src="/images/calendar.svg" alt="">29/06/2023 - 30/06/2023</h3>
-                        <h4>25.000 VNĐ</h4>
-                        <a class="btn-infomation" href="/event-detail">Xem chi tiết</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
